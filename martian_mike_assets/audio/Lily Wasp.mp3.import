@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dnfpubytvg1ot"
+path="res://.godot/imported/Lily Wasp.mp3-72fe4f12528cab16141eb7261ef09416.mp3str"
+
+[deps]
+
+source_file="res://martian_mike_assets/audio/Lily Wasp.mp3"
+dest_files=["res://.godot/imported/Lily Wasp.mp3-72fe4f12528cab16141eb7261ef09416.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

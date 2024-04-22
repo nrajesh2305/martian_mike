@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct7kq8qmm5u3l"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_c5goa"]
+[ext_resource type="Texture2D" uid="uid://dsjgumv3jdbxy" path="res://martian_mike_assets/textures/other/settingsButton.png" id="2_ro1pp"]
+[ext_resource type="PackedScene" uid="uid://no80jodpgd1v" path="res://scenes/settings_menu.tscn" id="3_w1unx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_djkng"]
+
+[node name="PauseMenu" type="Control"]
+top_level = true
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.478
+anchor_right = 0.5
+anchor_bottom = 0.478
+offset_left = 1.0
+offset_top = -0.0599976
+offset_right = 1.0
+offset_bottom = -0.0599976
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 0
+script = ExtResource("1_c5goa")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -242.0
+offset_top = -130.0
+offset_right = 241.0
+offset_bottom = 142.0
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+action_mode = 0
+text = "Resume Game"
+
+[node name="Return_To_Main_Menu" type="Button" parent="MarginContainer/VBoxContainer/Resume"]
+layout_mode = 2
+offset_top = 35.0
+offset_right = 120.0
+offset_bottom = 66.0
+text = "Main Menu
+"
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 205.0
+offset_top = 105.0
+offset_right = 237.0
+offset_bottom = 137.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_djkng")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_djkng")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_djkng")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_djkng")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_djkng")
+icon = ExtResource("2_ro1pp")
+
+[node name="Settings_Menu" parent="." instance=ExtResource("3_w1unx")]
+visible = false
+top_level = true
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 269.0
+offset_top = 54.0
+offset_right = 269.0
+offset_bottom = 54.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume/Return_To_Main_Menu" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_pressed"]

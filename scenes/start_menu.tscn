@@ -1,0 +1,179 @@
+[gd_scene load_steps=15 format=3 uid="uid://cjdp0ehqcliy4"]
+
+[ext_resource type="PackedScene" uid="uid://ckhk25ca78pax" path="res://scenes/bg.tscn" id="1_5v5bp"]
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_wt4q3"]
+[ext_resource type="Texture2D" uid="uid://bopthfx7mpifu" path="res://martian_mike_assets/textures/bg/Brown.png" id="2_70nvu"]
+[ext_resource type="FontFile" uid="uid://hcxwee6k2b6b" path="res://martian_mike_assets/fonts/Kenney Pixel Square.ttf" id="3_y3ebr"]
+[ext_resource type="PackedScene" uid="uid://cre6ea6pbvvfd" path="res://scenes/saw.tscn" id="5_1m2yn"]
+[ext_resource type="PackedScene" uid="uid://bf3aarau1f3jc" path="res://scenes/spike_ball.tscn" id="6_e27oa"]
+[ext_resource type="PackedScene" uid="uid://b1p0crnfxou52" path="res://scenes/jump_pad.tscn" id="7_2qo6y"]
+[ext_resource type="Texture2D" uid="uid://dsjgumv3jdbxy" path="res://martian_mike_assets/textures/other/settingsButton.png" id="8_5xtx6"]
+[ext_resource type="PackedScene" uid="uid://no80jodpgd1v" path="res://scenes/settings_menu.tscn" id="9_2dv5u"]
+
+[sub_resource type="Animation" id="Animation_0jiv2"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8g1x1"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c34nf"]
+_data = {
+"fade_in": SubResource("Animation_0jiv2"),
+"fade_out": SubResource("Animation_8g1x1")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_p668o"]
+font = ExtResource("3_y3ebr")
+font_size = 40
+font_color = Color(1, 0.180392, 0.235294, 1)
+outline_size = 5
+outline_color = Color(0.541176, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rrdm"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wt4q3")
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c34nf")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BG" parent="." instance=ExtResource("1_5v5bp")]
+bg_texture = ExtResource("2_70nvu")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+offset_left = 88.0
+offset_top = 45.0
+offset_right = 408.0
+offset_bottom = 108.0
+size_flags_horizontal = 0
+text = "R    AD RUNNER"
+label_settings = SubResource("LabelSettings_p668o")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 88.0
+offset_top = 108.0
+offset_right = 408.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource("3_y3ebr")
+text = "START"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 157.0
+offset_top = 176.0
+offset_right = 337.0
+offset_bottom = 239.0
+theme_override_fonts/font = ExtResource("3_y3ebr")
+text = "Quit
+"
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 442.0
+offset_top = 218.0
+offset_right = 474.0
+offset_bottom = 250.0
+theme_override_colors/font_hover_color = Color(0.665513, 0.372555, 0.980388, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0rrdm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0rrdm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0rrdm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0rrdm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0rrdm")
+icon = ExtResource("8_5xtx6")
+
+[node name="Saw" parent="." instance=ExtResource("5_1m2yn")]
+modulate = Color(0.968627, 0, 0.0196078, 1)
+position = Vector2(137, 79)
+
+[node name="SpikeBall" parent="." instance=ExtResource("6_e27oa")]
+position = Vector2(100, 26)
+
+[node name="SpikeBall2" parent="." instance=ExtResource("6_e27oa")]
+position = Vector2(365, 31)
+
+[node name="JumpPad" parent="." instance=ExtResource("7_2qo6y")]
+position = Vector2(416, 266)
+
+[node name="JumpPad2" parent="." instance=ExtResource("7_2qo6y")]
+position = Vector2(85, 266)
+
+[node name="Settings_Menu" parent="." instance=ExtResource("9_2dv5u")]
+visible = false
+layout_mode = 1
+
+[connection signal="animation_finished" from="Transition" to="." method="_on_transition_animation_finished"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

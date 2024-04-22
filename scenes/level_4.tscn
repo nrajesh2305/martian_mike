@@ -1,0 +1,144 @@
+[gd_scene load_steps=15 format=3 uid="uid://cv1wiy3evcq27"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_wlkdn"]
+[ext_resource type="PackedScene" uid="uid://55ywxy7sa2fa" path="res://scenes/exit.tscn" id="2_ysrs3"]
+[ext_resource type="PackedScene" uid="uid://ljipkyc2xuud" path="res://scenes/player.tscn" id="3_xnrnp"]
+[ext_resource type="PackedScene" uid="uid://dpb0gyxmp82w6" path="res://scenes/tile_map.tscn" id="4_m27cd"]
+[ext_resource type="PackedScene" uid="uid://cre6ea6pbvvfd" path="res://scenes/saw.tscn" id="5_ptrqk"]
+[ext_resource type="PackedScene" uid="uid://ckhk25ca78pax" path="res://scenes/bg.tscn" id="6_vd2ql"]
+[ext_resource type="PackedScene" uid="uid://c6grw5647r2m5" path="res://scenes/ui_layer.tscn" id="7_k8dim"]
+[ext_resource type="PackedScene" uid="uid://ddehmatwuvnvd" path="res://scenes/start.tscn" id="8_0go6f"]
+[ext_resource type="PackedScene" uid="uid://b12brnor6urtb" path="res://scenes/deathzone.tscn" id="9_dl4is"]
+[ext_resource type="PackedScene" uid="uid://bf3aarau1f3jc" path="res://scenes/spike_ball.tscn" id="10_t00rp"]
+[ext_resource type="PackedScene" uid="uid://ct7kq8qmm5u3l" path="res://scenes/pause_menu.tscn" id="11_rf8t8"]
+
+[sub_resource type="Animation" id="Animation_0jiv2"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8g1x1"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c34nf"]
+_data = {
+"fade_in": SubResource("Animation_0jiv2"),
+"fade_out": SubResource("Animation_8g1x1")
+}
+
+[node name="Level_4" type="Node2D"]
+script = ExtResource("1_wlkdn")
+is_final_level = true
+
+[node name="Exit" parent="." instance=ExtResource("2_ysrs3")]
+position = Vector2(1107, 147)
+
+[node name="Player" parent="." instance=ExtResource("3_xnrnp")]
+position = Vector2(31, 191)
+
+[node name="BG" parent="." instance=ExtResource("6_vd2ql")]
+
+[node name="UILayer" parent="." instance=ExtResource("7_k8dim")]
+
+[node name="Start" parent="." instance=ExtResource("8_0go6f")]
+position = Vector2(22, 238)
+
+[node name="Deathzone" parent="." instance=ExtResource("9_dl4is")]
+position = Vector2(-416, 359)
+
+[node name="TileMap" parent="." instance=ExtResource("4_m27cd")]
+layer_0/tile_data = PackedInt32Array(1310736, 524288, 2, 1245200, 524288, 1, 1179664, 524288, 1, 1114128, 524288, 1, 1048592, 524288, 1, 983056, 524288, 0, 1310735, 458752, 2, 1245199, 458752, 1, 1179663, 458752, 1, 1114127, 458752, 1, 1048591, 458752, 1, 983055, 458752, 0, 1310734, 458752, 2, 1245198, 458752, 1, 1179662, 458752, 1, 1114126, 458752, 1, 1048590, 458752, 1, 983054, 458752, 0, 1310733, 458752, 2, 1245197, 458752, 1, 1179661, 458752, 1, 1114125, 458752, 1, 1048589, 458752, 1, 983053, 458752, 0, 1310732, 458752, 2, 1245196, 458752, 1, 1179660, 458752, 1, 1114124, 458752, 1, 1048588, 458752, 1, 983052, 458752, 0, 1310731, 458752, 2, 1245195, 458752, 1, 1179659, 458752, 1, 1114123, 458752, 1, 1048587, 458752, 1, 983051, 458752, 0, 1310730, 458752, 2, 1245194, 458752, 1, 1179658, 458752, 1, 1114122, 458752, 1, 1048586, 458752, 1, 983050, 458752, 0, 1310729, 458752, 2, 1245193, 458752, 1, 1179657, 458752, 1, 1114121, 458752, 1, 1048585, 458752, 1, 983049, 458752, 0, 1310728, 458752, 2, 1245192, 458752, 1, 1179656, 458752, 1, 1114120, 458752, 1, 1048584, 458752, 1, 983048, 458752, 0, 1310727, 458752, 2, 1245191, 458752, 1, 1179655, 458752, 1, 1114119, 458752, 1, 1048583, 458752, 1, 983047, 458752, 0, 1310726, 458752, 2, 1245190, 458752, 1, 1179654, 458752, 1, 1114118, 458752, 1, 1048582, 458752, 1, 983046, 458752, 0, 1310725, 458752, 2, 1245189, 458752, 1, 1179653, 458752, 1, 1114117, 458752, 1, 1048581, 458752, 1, 983045, 458752, 0, 1310724, 458752, 2, 1245188, 458752, 1, 1179652, 458752, 1, 1114116, 458752, 1, 1048580, 458752, 1, 983044, 458752, 0, 1310723, 458752, 2, 1245187, 458752, 1, 1179651, 458752, 1, 1114115, 458752, 1, 1048579, 458752, 1, 983043, 458752, 0, 1310722, 458752, 2, 1245186, 458752, 1, 1179650, 458752, 1, 1114114, 458752, 1, 1048578, 458752, 1, 983042, 458752, 0, 1310721, 458752, 2, 1245185, 458752, 1, 1179649, 458752, 1, 1114113, 458752, 1, 1048577, 458752, 1, 983041, 458752, 0, 1310720, 393216, 2, 1245184, 393216, 1, 1179648, 393216, 1, 1114112, 393216, 1, 1048576, 393216, 1, 983040, 393216, 0, 917522, 786432, 4, 917523, 786432, 4, 917524, 786432, 4, 917525, 786432, 4, 786457, 786432, 4, 786458, 786432, 4, 786459, 786432, 4, 786460, 786432, 4, 917536, 786432, 4, 917537, 786432, 4, 917538, 786432, 4, 917539, 786432, 4, 720934, 786432, 4, 720935, 786432, 4, 720936, 786432, 4, 720937, 786432, 4, 851977, 851968, 5, 917513, 851968, 6, 851978, 917504, 5, 917514, 917504, 6, 786476, 1114112, 0, 786477, 1179648, 0, 786478, 1245184, 0, 917552, 1114112, 0, 917553, 1179648, 0, 917554, 1245184, 0, 1048629, 1114112, 0, 1048630, 1179648, 0, 1048631, 1245184, 0, 917562, 1114112, 0, 917563, 1179648, 0, 917564, 1245184, 0, 852032, 1114112, 0, 852033, 1179648, 0, 852034, 1245184, 0, 720964, 1114112, 0, 720965, 1179648, 0, 720966, 1245184, 0)
+
+[node name="Saw" parent="TileMap" instance=ExtResource("5_ptrqk")]
+position = Vector2(382, 230)
+
+[node name="Saw2" parent="TileMap" instance=ExtResource("5_ptrqk")]
+position = Vector2(484, 233)
+
+[node name="SpikeBall" parent="TileMap" instance=ExtResource("10_t00rp")]
+position = Vector2(1058, 195)
+
+[node name="SpikeBall2" parent="TileMap" instance=ExtResource("10_t00rp")]
+position = Vector2(568, 119)
+
+[node name="SpikeBall3" parent="TileMap" instance=ExtResource("10_t00rp")]
+position = Vector2(804, 208)
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c34nf")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = -0.404
+anchor_top = -0.1
+anchor_right = 0.994
+anchor_bottom = 1.033
+offset_left = -0.0799866
+offset_right = -0.119995
+offset_bottom = 0.0899963
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" parent="." instance=ExtResource("11_rf8t8")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 58.0
+offset_top = 69.0
+offset_right = 58.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
