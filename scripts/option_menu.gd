@@ -19,11 +19,11 @@ func on_exit_pressed() -> void:
 	v_box_container.visible = false
 	back_button.visible = false
 	set_state(false)
-	var pause_menu = preload("res://scenes/pause_menu.tscn").instantiate()
+	#var pause_menu = preload("res://scenes/pause_menu.tscn").instantiate()
 	
-	add_child(pause_menu)
-	get_tree().root.add_child(pause_menu)
-	pause_menu.visible = true
+	#add_child(pause_menu)
+	#get_tree().root.add_child(pause_menu)
+	#pause_menu.visible = true
 	
 
 func set_state(a):

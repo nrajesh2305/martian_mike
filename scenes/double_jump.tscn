@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://e734j3vf3q5q"]
 
-[ext_resource type="Script" path="res://powerup.gd" id="1_wykg5"]
+[ext_resource type="Script" path="res://scripts/powerup.gd" id="1_wykg5"]
 [ext_resource type="Texture2D" uid="uid://4pcs3ynir4o0" path="res://Extra_Traps/Arrow_Double_Jump.png" id="2_njt4i"]
 
 [sub_resource type="Animation" id="Animation_0fl0w"]
