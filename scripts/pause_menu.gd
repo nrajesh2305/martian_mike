@@ -4,6 +4,7 @@ extends Control
 @onready var settings_button = $SettingsButton
 @onready var settings_menu = $Settings_Menu
 @onready var v_box_container = $MarginContainer/VBoxContainer
+@onready var background_color = $BackgroundColor
 
 func _on_resume_pressed():
 	get_tree().paused = false
@@ -20,9 +21,8 @@ func _on_quit_pressed():
 func _on_settings_pressed():
 	get_tree().paused = false
 	Engine.time_scale = 0
-	get_tree().current_scene.visible = !get_tree().current_scene.visible # hiding the pause menu, works, now we have to show the settings menu, and hide everything else.
+	#get_tree().current_scene.visible = !get_tree().current_scene.visible # hiding the pause menu, works, now we have to show the settings menu, and hide everything else.
 	print("You have pressed the settings button. You will go to the settings, everything else is going to be hidden for the time being.")
-	settings_menu.visible = !settings_menu.visible
-	v_box_container.visible = !v_box_container.visible
-	settings_button.visible = !settings_button.visible
-	
+	settings_menu.set_state(true)
+	#v_box_container.visible = false
+	#settings_button.visible = false

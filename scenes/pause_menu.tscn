@@ -59,7 +59,6 @@ text = "Main Menu
 "
 
 [node name="SettingsButton" type="Button" parent="."]
-visible = false
 layout_mode = 2
 offset_left = 205.0
 offset_top = 105.0
@@ -73,17 +72,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_djkng")
 icon = ExtResource("2_ro1pp")
 
 [node name="Settings_Menu" parent="." instance=ExtResource("3_w1unx")]
+visible = false
 top_level = true
 layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 269.0
-offset_top = 54.0
-offset_right = 269.0
-offset_bottom = 54.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume/Return_To_Main_Menu" to="." method="_on_quit_pressed"]

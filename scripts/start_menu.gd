@@ -25,16 +25,7 @@ func _on_quit_button_pressed():
 	get_tree().quit()
 
 func on_exit_settings_menu() -> void:
-	title.visible = true
-	start_button.visible = true
-	quit_button.visible = true
-	settings_button.visible = true
-	saw.visible = true
-	spike_ball.visible = true
-	spike_ball_2.visible = true
-	jump_pad.visible = true
-	jump_pad_2.visible = true
-	settings_menu.visible = false
+	settings_menu.set_state(false)
 
 
 func _on_transition_animation_finished(anim_name):
@@ -55,3 +46,5 @@ func toggle_settings_menu() -> void:
 	#jump_pad_2.visible = !jump_pad_2.visible	
 	pass
 	TheSceneManager.push_scene("res://scenes/settings_menu.tscn")
+	settings_menu.set_state(true)
+	
