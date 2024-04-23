@@ -18,7 +18,7 @@ func on_exit_pressed() -> void:
 	background.visible = false
 	v_box_container.visible = false
 	back_button.visible = false
-	set_state(false)
+	settings_menu.set_state(false)
 	#var pause_menu = preload("res://scenes/pause_menu.tscn").instantiate()
 	
 	#add_child(pause_menu)

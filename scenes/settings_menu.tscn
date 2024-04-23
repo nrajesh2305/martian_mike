@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://no80jodpgd1v"]
+[gd_scene load_steps=6 format=3 uid="uid://no80jodpgd1v"]
 
 [ext_resource type="FontFile" uid="uid://hcxwee6k2b6b" path="res://martian_mike_assets/fonts/Kenney Pixel Square.ttf" id="1_aa3e3"]
 [ext_resource type="Texture2D" uid="uid://cdf0fe7afjr2f" path="res://martian_mike_assets/textures/other/backButton.png" id="1_p8fxe"]
 [ext_resource type="Script" path="res://scripts/option_menu.gd" id="1_uyu0e"]
+[ext_resource type="PackedScene" uid="uid://bvihxgn711xtq" path="res://scenes/h_slider.tscn" id="4_in46h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ya4c"]
 
@@ -70,5 +71,54 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_1ya4c")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ya4c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1ya4c")
 icon = ExtResource("1_p8fxe")
+
+[node name="master_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 94.0
+offset_right = 137.0
+offset_bottom = 117.0
+text = "Master Volume"
+
+[node name="Master" parent="master_label" instance=ExtResource("4_in46h")]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 5.0
+offset_right = 387.0
+offset_bottom = 21.0
+bus_name = "Master"
+
+[node name="music_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 166.0
+offset_right = 121.0
+offset_bottom = 189.0
+text = "Music Volume
+"
+
+[node name="Music" parent="." instance=ExtResource("4_in46h")]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 170.0
+offset_right = 337.0
+offset_bottom = 186.0
+bus_name = "music"
+
+[node name="sfx_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 131.0
+offset_right = 111.0
+offset_bottom = 154.0
+text = "SFX Volume"
+
+[node name="SFX" parent="." instance=ExtResource("4_in46h")]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 125.0
+offset_right = 337.0
+offset_bottom = 161.0
+bus_name = "sfx"
 
 [connection signal="pressed" from="Back_Button" to="." method="on_exit_pressed"]

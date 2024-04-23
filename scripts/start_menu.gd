@@ -43,8 +43,6 @@ func toggle_settings_menu() -> void:
 	#spike_ball.visible = !spike_ball.visible
 	#spike_ball_2.visible = !spike_ball_2.visible
 	#jump_pad.visible = !jump_pad.visible
-	#jump_pad_2.visible = !jump_pad_2.visible	
-	pass
-	TheSceneManager.push_scene("res://scenes/settings_menu.tscn")
+	#jump_pad_2.visible = !jump_pad_2.visible
 	settings_menu.set_state(true)
 	
