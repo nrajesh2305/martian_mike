@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c2wigprq2ix2"]
+[gd_scene load_steps=22 format=3 uid="uid://c2wigprq2ix2"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_0i1v2"]
 [ext_resource type="PackedScene" uid="uid://dv1qjrivsddg8" path="res://scenes/level_2.tscn" id="2_2yixm"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dwi3mcbg3jqah" path="res://scenes/bomb.tscn" id="12_d6rp6"]
 [ext_resource type="PackedScene" uid="uid://2gtmrbntjh74" path="res://scenes/fire.tscn" id="14_evh1q"]
 [ext_resource type="PackedScene" uid="uid://e734j3vf3q5q" path="res://scenes/double_jump.tscn" id="17_tgtn8"]
+[ext_resource type="PackedScene" uid="uid://b2bqjpaci6wqv" path="res://scenes/score_manager.tscn" id="18_yl63w"]
 
 [sub_resource type="Animation" id="Animation_0jiv2"]
 resource_name = "fade_in"
@@ -167,3 +168,6 @@ offset_bottom = 0.0899963
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="ScoreManager" parent="." instance=ExtResource("18_yl63w")]
+visible = false

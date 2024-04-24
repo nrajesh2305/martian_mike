@@ -9,11 +9,14 @@ extends Node2D
 @onready var hud = $UILayer/HUD
 @onready var ui_layer = $UILayer
 @onready var transition = $Transition
+@onready var score_manager = $ScoreManager
 
 var player = null
 var timer_node = null
 var time_left
 var win = false
+
+var num_jumps = GameData.total_jumps
 
 func _ready():
 	transition.play("fade_in")
@@ -68,6 +71,8 @@ func _on_exit_body_entered(body):
 			win = true
 			await get_tree().create_timer(1.5).timeout
 			if is_final_level:
+				score_manager.update_score_display()
 				ui_layer.show_win_screen(true)
+				print("Score for all: " + str(GameData.total_jumps))
 			else:
 				get_tree().change_scene_to_packed(next_level)

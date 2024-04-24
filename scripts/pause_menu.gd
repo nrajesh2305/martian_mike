@@ -17,6 +17,7 @@ func _on_quit_pressed():
 	hide()
 	get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
 	Engine.time_scale = 1
+	GameData.total_jumps = 0
 
 func _on_settings_pressed():
 	get_tree().paused = false

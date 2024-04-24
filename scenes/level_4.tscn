@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cv1wiy3evcq27"]
+[gd_scene load_steps=17 format=3 uid="uid://cv1wiy3evcq27"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wlkdn"]
 [ext_resource type="PackedScene" uid="uid://55ywxy7sa2fa" path="res://scenes/exit.tscn" id="2_ysrs3"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ddehmatwuvnvd" path="res://scenes/start.tscn" id="8_0go6f"]
 [ext_resource type="PackedScene" uid="uid://b12brnor6urtb" path="res://scenes/deathzone.tscn" id="9_dl4is"]
 [ext_resource type="PackedScene" uid="uid://bf3aarau1f3jc" path="res://scenes/spike_ball.tscn" id="10_t00rp"]
+[ext_resource type="PackedScene" uid="uid://b2bqjpaci6wqv" path="res://scenes/score_manager.tscn" id="13_0wkb3"]
 
 [sub_resource type="Animation" id="Animation_0jiv2"]
 resource_name = "fade_in"
@@ -134,3 +135,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_xnrnp")]
 position = Vector2(31, 191)
+
+[node name="ScoreManager" parent="." instance=ExtResource("13_0wkb3")]
+visible = false
