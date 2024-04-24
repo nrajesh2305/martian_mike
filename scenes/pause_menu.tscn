@@ -23,6 +23,7 @@ size_flags_vertical = 0
 script = ExtResource("1_c5goa")
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -242.0
 offset_top = -130.0

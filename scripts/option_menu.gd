@@ -19,6 +19,7 @@ func on_exit_pressed() -> void:
 	v_box_container.visible = false
 	back_button.visible = false
 	settings_menu.set_state(false)
+	print("The settings is now invisible.")
 	#var pause_menu = preload("res://scenes/pause_menu.tscn").instantiate()
 	
 	#add_child(pause_menu)
@@ -30,3 +31,4 @@ func set_state(a):
 	settings_menu.visible = a
 	v_box_container.visible = a
 	back_button.visible = a
+	background.visible = a
