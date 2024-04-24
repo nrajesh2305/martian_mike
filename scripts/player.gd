@@ -10,6 +10,8 @@ class_name Player
 var active = true
 var paused = false
 
+var jump_count = 0
+
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
 		print("You pressed the quit button..")
@@ -65,6 +67,8 @@ func _physics_process(delta):
 func jump(force):
 	AudioPlayer.play_sfx("jump")
 	velocity.y = -force
+	var jumps = GameData.increment_jump_count()
+	print("You have jumped " + str(jumps) + " times")
 
 func update_animations(direction):
 	if is_on_floor():
