@@ -43,4 +43,3 @@ func toggle_settings_menu() -> void:
 	#jump_pad.visible = !jump_pad.visible
 	#jump_pad_2.visible = !jump_pad_2.visible
 	settings_menu.set_state(true)
-	
