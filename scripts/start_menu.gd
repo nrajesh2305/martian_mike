@@ -27,14 +27,12 @@ func _on_quit_button_pressed():
 func on_exit_settings_menu() -> void:
 	settings_menu.set_state(false)
 
-
 func _on_transition_animation_finished(anim_name):
 	get_tree().change_scene_to_packed(level1)
 
 func toggle_settings_menu() -> void:
 	#settings_menu.visible = true
 	#settings_menu.set_process(true)
-	#
 	#title.visible = !title.visible
 	#start_button.visible = !start_button.visible
 	#quit_button.visible = !quit_button.visible
