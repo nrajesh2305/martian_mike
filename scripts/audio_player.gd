@@ -2,13 +2,12 @@ extends Node
 
 var hurt = preload("res://martian_mike_assets/audio/hurt.wav")
 var jump = preload("res://martian_mike_assets/audio/jump.wav")
-var music = preload("res://martian_mike_assets/audio/Lily Wasp.mp3") # Adjust path as needed
+var music = preload("res://martian_mike_assets/audio/Lily Wasp.mp3")
 
-var sfx_volume_db = -10.0 # Set the volume for SFX AudioStreamPlayers
-var music_volume_db = -20.0 # Set the volume for the Music AudioStreamPlayer
+var sfx_volume_db = -10.0
+var music_volume_db = -20.0
 
 func _ready():
-	# To play music at the start of the scene, you can use:
 	play_music()
 
 func play_sfx(sfx_name: String):
@@ -37,10 +36,8 @@ func play_music():
 	var asp = AudioStreamPlayer.new()
 	asp.stream = music
 	asp.volume_db = music_volume_db
-	asp.bus = "music" # Make sure this matches your bus name in Godot
+	asp.bus = "music"
 	asp.name = "Music_Player"
-	asp.autoplay = true # If you want it to start automatically
-	print("The music is playing")
+	asp.autoplay = true
 	add_child(asp)
 	asp.play()
-	# Note: We're not queue_free'ing the music player since it's likely to be continuous

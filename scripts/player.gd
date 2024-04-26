@@ -14,7 +14,6 @@ var jump_count = 0
 
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
-		print("You pressed the quit button..")
 		pauseMenu()
 
 func pauseMenu():
@@ -34,13 +33,11 @@ func set_active(is_active):
 		animated_sprite.stop()
 	else:
 		animated_sprite.play()
-	# Additional logic to reset player state if needed
 	velocity = Vector2.ZERO
 	
 func _physics_process(delta):
 	if !active:
 		return
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if velocity.y > 500:
@@ -49,14 +46,10 @@ func _physics_process(delta):
 	if active:
 		if Input.is_action_just_pressed("jump") && is_on_floor():
 			jump(jump_force)
-			#score_manager.jump_count += 1
-		
-		#score_manager.time_elapsed = 1440 - (Time.get_ticks_msec() / 1000.0)
 		
 		direction = Input.get_axis("move_left", "move_right")
 	if direction != 0:
 		animated_sprite.flip_h = (direction == -1)
-	
 	
 	velocity.x = direction * speed
 	
@@ -67,8 +60,6 @@ func _physics_process(delta):
 func jump(force):
 	AudioPlayer.play_sfx("jump")
 	velocity.y = -force
-	var jumps = GameData.increment_jump_count()
-	print("You have jumped " + str(jumps) + " times")
 
 func update_animations(direction):
 	if is_on_floor():

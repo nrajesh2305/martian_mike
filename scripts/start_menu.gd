@@ -31,15 +31,4 @@ func _on_transition_animation_finished(anim_name):
 	get_tree().change_scene_to_packed(level1)
 
 func toggle_settings_menu() -> void:
-	#settings_menu.visible = true
-	#settings_menu.set_process(true)
-	#title.visible = !title.visible
-	#start_button.visible = !start_button.visible
-	#quit_button.visible = !quit_button.visible
-	#settings_button.visible = !settings_button.visible
-	#saw.visible = !saw.visible
-	#spike_ball.visible = !spike_ball.visible
-	#spike_ball_2.visible = !spike_ball_2.visible
-	#jump_pad.visible = !jump_pad.visible
-	#jump_pad_2.visible = !jump_pad_2.visible
 	settings_menu.set_state(true)
