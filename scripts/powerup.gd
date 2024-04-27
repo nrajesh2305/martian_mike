@@ -11,8 +11,9 @@ var step_size = 1.0 / cooldown_time
 @onready var sprite_2d = $"."
 var is_powerup_active = false
 var num_jumps_left = 2
-@onready var player = $"../Player"
 var cooldown_timer: Timer
+var player = preload("res://scenes/player.tscn")
+
 
 #func start_second_timer():
 	##var timer = Timer.new()
@@ -68,10 +69,11 @@ func _process(delta):
 		if Input.is_action_just_pressed("jump"):
 			num_jumps_left -= 1
 			if num_jumps_left == 0:
-				pass # I think if we don't want to do anything here, we just put pass correct?
+				return # I think if we don't want to do anything here, we just put pass correct?
 				
 			# If we are in the air or not, we are able to jump one more time.
 			if player.is_on_floor() or not player.is_on_floor():
+				print("The double jump has been activated.")
 				player.jump()
 			
 		on_cooldown = true

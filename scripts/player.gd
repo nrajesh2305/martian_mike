@@ -10,7 +10,7 @@ class_name Player
 var active = true
 var paused = false
 
-var jump_count = 0
+var jump_count = 2  # Initialize to allow up to two jumps when ability is active
 
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
@@ -34,34 +34,33 @@ func set_active(is_active):
 	else:
 		animated_sprite.play()
 	velocity = Vector2.ZERO
-	
+
 func _physics_process(delta):
 	if !active:
 		return
+
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if velocity.y > 500:
 			velocity.y = 500
+
+	if is_on_floor():
+		jump_count = 2  # Reset jump count when on floor
+
 	var direction = 0
 	if active:
-		if Input.is_action_just_pressed("jump") && is_on_floor():
+		if Input.is_action_just_pressed("jump") and (is_on_floor() or jump_count > 0):
 			jump(jump_force)
+			jump_count -= 1  # Decrement jump counter each jump
 		
-		if Input.is_action_just_pressed("activate_ability"): # AND need to check if the ability is currently active and the cooldown has passed.
-			#if Input.is_action_just_pressed("jump"):
-			if not is_on_floor() or is_on_floor():
-				#print("You pressed jump")
-				if Input.is_action_just_pressed("jump"):
-					jump(jump_force)
 		
 		direction = Input.get_axis("move_left", "move_right")
+
 	if direction != 0:
 		animated_sprite.flip_h = (direction == -1)
 	
 	velocity.x = direction * speed
-	
 	move_and_slide()
-	
 	update_animations(direction)
 
 func jump(force):
