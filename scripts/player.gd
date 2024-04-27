@@ -47,6 +47,13 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("jump") && is_on_floor():
 			jump(jump_force)
 		
+		if Input.is_action_just_pressed("activate_ability"): # AND need to check if the ability is currently active and the cooldown has passed.
+			#if Input.is_action_just_pressed("jump"):
+			if not is_on_floor() or is_on_floor():
+				#print("You pressed jump")
+				if Input.is_action_just_pressed("jump"):
+					jump(jump_force)
+		
 		direction = Input.get_axis("move_left", "move_right")
 	if direction != 0:
 		animated_sprite.flip_h = (direction == -1)
