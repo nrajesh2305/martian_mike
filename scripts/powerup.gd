@@ -10,25 +10,50 @@ var step_size = 1.0 / cooldown_time
 @onready var animation_player = $"../AnimationPlayer"
 @onready var sprite_2d = $"."
 var is_powerup_active = false
-
+var num_jumps_left = 2
+@onready var player = $"../Player"
 var cooldown_timer: Timer
 
+#func start_second_timer():
+	##var timer = Timer.new()
+	##timer.wait_time = 1.5
+	##timer.one_shot = true
+	##add_child(timer)
+	##timer.timeout.connect(_on_small_timer_timeout)
+	##timer.start()
+	#
 func start_second_timer():
+# Only stop the timer, don't queue_free it
+	if cooldown_timer.is_inside_tree() and cooldown_timer.is_stopped() == false:
+		cooldown_timer.stop()  # Temporarily stop the timer, not destroy it
+
+	# Start the powerup timer
 	var timer = Timer.new()
 	timer.wait_time = 1.5
 	timer.one_shot = true
 	add_child(timer)
 	timer.timeout.connect(_on_small_timer_timeout)
 	timer.start()
+	animation_player.stop()
+
+	# Indicate powerup is active and freeze the label
+	is_powerup_active = true
+	cooldown_label.text = str(5)  # Display as '5' during the powerup
+	cooldown_label.visible = true
 
 func _on_small_timer_timeout():
 	print("1.5 seconds have passed!")
+	is_powerup_active = false  # Indicate that the powerup period has ended
 
+	# Ensure the cooldown timer restarts from a paused state
+	if cooldown_timer.is_inside_tree():
+		cooldown_timer.start()  # This ensures the timer resumes
+		
 func _process(delta):
-	if cooldown_time > 0:
+	if cooldown_time > 0 and not is_powerup_active:  # Check if powerup is not active to manage cooldown
 		animation_player.stop()
 		on_cooldown = true
-	else:
+	elif not is_powerup_active:  # Ensure this block only runs when not in powerup
 		animation_player.play()
 		on_cooldown = false
 		
@@ -41,8 +66,13 @@ func _process(delta):
 		# If they are in the air or not, they can double jump,
 		# aka jump twice in a row before going down.
 		if Input.is_action_just_pressed("jump"):
-			
-			pass
+			num_jumps_left -= 1
+			if num_jumps_left == 0:
+				pass # I think if we don't want to do anything here, we just put pass correct?
+				
+			# If we are in the air or not, we are able to jump one more time.
+			if player.is_on_floor() or not player.is_on_floor():
+				player.jump()
 			
 		on_cooldown = true
 		reset_cooldown()
@@ -66,28 +96,30 @@ func setup_timer():
 	cooldown_timer.start()
 
 func _on_Timer_timeout() -> void:
-	cooldown_time -= 1
-	cooldown_label.text = str(cooldown_time)
-	print(cooldown_time)
-
-	current_color = current_color.lerp(target_color, step_size)
-	self_modulate = current_color
-
-	if cooldown_time <= 0:
-		cooldown_label.visible = false
-		cooldown_timer.stop()
-		self_modulate = target_color
-		on_cooldown = false
-		animation_player.play()
+	if not is_powerup_active:
+		cooldown_time -= 1
+		cooldown_label.text = str(cooldown_time)
 		print(cooldown_time)
+
+		current_color = current_color.lerp(target_color, step_size)
+		self_modulate = current_color
+
+		if cooldown_time <= 0:
+			cooldown_label.visible = false
+			cooldown_timer.stop()
+			self_modulate = target_color
+			on_cooldown = false
+			animation_player.play()
+			print(cooldown_time)
 
 func reset_cooldown():
 	cooldown_time = 5
 	current_color = the_current_color
-	cooldown_label.visible = true
 	cooldown_label.text = str(cooldown_time)
+	cooldown_label.visible = true
 	on_cooldown = true
-	setup_timer()
+	# Do not start the timer here; it will be restarted after the powerup ends
+
 
 func stop() -> void:
 	cooldown_timer.stop()
