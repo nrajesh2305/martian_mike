@@ -9,8 +9,14 @@ class_name Player
 
 var active = true
 var paused = false
+var is_ability_active = false
+var max_jumps = 1
 
-var jump_count = 2  # Initialize to allow up to two jumps when ability is active
+
+var jump_count = max_jumps
+
+func _ready():
+	GameData.player = self
 
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
@@ -45,13 +51,13 @@ func _physics_process(delta):
 			velocity.y = 500
 
 	if is_on_floor():
-		jump_count = 2  # Reset jump count when on floor
+		jump_count = max_jumps
 
 	var direction = 0
 	if active:
 		if Input.is_action_just_pressed("jump") and (is_on_floor() or jump_count > 0):
 			jump(jump_force)
-			jump_count -= 1  # Decrement jump counter each jump
+			jump_count -= 1
 		
 		direction = Input.get_axis("move_left", "move_right")
 

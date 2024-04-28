@@ -10,6 +10,7 @@ extends Node2D
 @onready var ui_layer = $UILayer
 @onready var transition = $Transition
 @onready var score_manager = $ScoreManager
+@onready var sprite_2d = $UILayer/Double_Jump/Sprite2D
 
 var player = null
 var timer_node = null
