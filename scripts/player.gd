@@ -53,7 +53,6 @@ func _physics_process(delta):
 			jump(jump_force)
 			jump_count -= 1  # Decrement jump counter each jump
 		
-		
 		direction = Input.get_axis("move_left", "move_right")
 
 	if direction != 0:

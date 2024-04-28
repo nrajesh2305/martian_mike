@@ -10,8 +10,10 @@ var step_size = 1.0 / cooldown_time
 @onready var animation_player = $"../AnimationPlayer"
 @onready var sprite_2d = $"."
 var is_powerup_active = false
-
+var num_jumps_left = 2
 var cooldown_timer: Timer
+var player = preload("res://scenes/player.tscn")
+
 
 #func start_second_timer():
 	##var timer = Timer.new()
@@ -22,29 +24,32 @@ var cooldown_timer: Timer
 	##timer.start()
 	#
 func start_second_timer():
-# Pause the existing cooldown timer
-	if cooldown_timer.is_inside_tree():
-		cooldown_timer.stop()  # Stop but do not remove; we will restart it later
+# Only stop the timer, don't queue_free it
+	if cooldown_timer.is_inside_tree() and cooldown_timer.is_stopped() == false:
+		cooldown_timer.stop()  # Temporarily stop the timer, not destroy it
 
-	# Create and start the powerup timer
+	# Start the powerup timer
 	var timer = Timer.new()
 	timer.wait_time = 1.5
 	timer.one_shot = true
 	add_child(timer)
 	timer.timeout.connect(_on_small_timer_timeout)
 	timer.start()
+	animation_player.stop()
 
-	# Freeze the cooldown label at 5 seconds
-	cooldown_label.text = str(5)
+	# Indicate powerup is active and freeze the label
+	is_powerup_active = true
+	cooldown_label.text = str(5)  # Display as '5' during the powerup
 	cooldown_label.visible = true
-
 
 func _on_small_timer_timeout():
 	print("1.5 seconds have passed!")
-	# Restart the cooldown timer
-	if cooldown_timer.is_inside_tree():
-		cooldown_timer.start()  # Restart the paused timer
+	is_powerup_active = false  # Indicate that the powerup period has ended
 
+	# Ensure the cooldown timer restarts from a paused state
+	if cooldown_timer.is_inside_tree():
+		cooldown_timer.start()  # This ensures the timer resumes
+		
 func _process(delta):
 	if cooldown_time > 0 and not is_powerup_active:  # Check if powerup is not active to manage cooldown
 		animation_player.stop()
@@ -62,8 +67,14 @@ func _process(delta):
 		# If they are in the air or not, they can double jump,
 		# aka jump twice in a row before going down.
 		if Input.is_action_just_pressed("jump"):
-			
-			pass
+			num_jumps_left -= 1
+			if num_jumps_left == 0:
+				return # I think if we don't want to do anything here, we just put pass correct?
+				
+			# If we are in the air or not, we are able to jump one more time.
+			if player.is_on_floor() or not player.is_on_floor():
+				print("The double jump has been activated.")
+				player.jump()
 			
 		on_cooldown = true
 		reset_cooldown()
