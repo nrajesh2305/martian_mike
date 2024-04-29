@@ -134,6 +134,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_q21t4")]
+visible = false
 position = Vector2(87, 118)
 
 [node name="ScoreManager" parent="." instance=ExtResource("14_rhn6k")]

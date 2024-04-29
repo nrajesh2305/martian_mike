@@ -17,7 +17,6 @@ func on_exit_pressed() -> void:
 	back_button.visible = false
 	settings_menu.set_state(false)
 	
-
 func set_state(a):
 	settings_menu.visible = a
 	v_box_container.visible = a
